@@ -7,7 +7,7 @@
                     <v-col class="md4">
                         <h1>Item List</h1>
                     </v-col>
-                    <v-col style="margin-left: 80%;">
+                    <v-col style="margin-left: 75%;">
                         <spacer />
                         <template>
                             <div class="text-center">
