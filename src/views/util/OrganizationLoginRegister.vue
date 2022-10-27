@@ -1,0 +1,127 @@
+<template>
+  <v-container fluid fill-height>
+    <v-layout column align-center justify-center>
+      <v-toolbar dense small flat color="transparent">
+        <v-spacer></v-spacer>
+        <v-toolbar-title></v-toolbar-title>
+        <v-toolbar-items class="text-right"> </v-toolbar-items>
+      </v-toolbar>
+      <v-container fluid fill-height>
+        <v-layout align-center justify-center>
+          <v-flex xs12 sm8 md4>
+            <!-- loging -->
+
+            <!-- <v-expansion-panel popout
+        v-model="expansion">
+          <v-expansion-panel-content>
+            <template v-slot:header>
+              <div>Login</div>
+            </template>-->
+            <v-card class="elevation-12 rounded">
+              <v-toolbar color="primary" dark flat>
+                <v-layout justify-start>
+                  <v-toolbar-title>Organization Login</v-toolbar-title>
+                </v-layout>
+                <v-img
+                  justify-end
+                  wrap
+                  :src="require('@/assets/nu_logos/nu_logo_r.png')"
+                  contain
+                  height="100"
+                ></v-img>
+              </v-toolbar>
+              <v-card-text class="pa-0 pt-3 pr-4 pl-3">
+                <v-form>
+                  <v-text-field
+                    v-model="user.username"
+                    label="Email"
+                    name="username"
+                    prepend-icon="person"
+                    type="text"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="user.password"
+                    id="password"
+                    label="Password"
+                    name="password"
+                    prepend-icon="lock"
+                    type="password"
+                  ></v-text-field>
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-layout justify-center class="pb-2">
+                  <v-btn color="info" @click="checkUser">
+                    <v-icon left dark>account_circle</v-icon>Login
+                  </v-btn>
+                  <v-btn color="primary" @click="goTo('org-register')">
+                    <v-icon left dark>account_circle</v-icon>
+                    Register
+                  </v-btn>
+                  <a @click="goForgetPassword" class="text-center mt-2 ml-3">
+                    Forget Password ?
+                  </a>
+                </v-layout>
+              </v-card-actions>
+              <v-flex mb-4></v-flex>
+            </v-card>
+            <!-- </v-expansion-panel-content>
+            </v-expansion-panel>-->
+
+            <!-- <v-layout justify-center>
+          <v-btn color="primary" outline @click="goStart">Start</v-btn>
+            </v-layout>-->
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-layout>
+  </v-container>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      expansion: true,
+
+      user: {
+        password: "",
+        username: ""
+      }
+    };
+  },
+  components: {},
+  methods: {
+    goStart() {
+      this.$router.push("/");
+    },
+    goHome() {
+      this.$router.push("/org/dashboard");
+    },
+    goForgetPassword() {
+      this.$router.push("/org-forget-password");
+    },
+    goTo(url) {
+      this.$router.push(url);
+    },
+    checkUser() {
+      // console.log(this.user)
+      this.$store
+        .dispatch("orgLogin", this.user)
+        .then(response => {
+          console.log(response);
+          this.$router.push("/org/dashboard");
+        })
+        .catch(() => {
+          alert("wrong");
+        });
+    }
+  }
+};
+</script>
+
+<style scoped>
+.rounded {
+  border-radius: 15px;
+}
+</style>

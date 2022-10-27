@@ -1,0 +1,279 @@
+
+   [ 
+      { 
+         "name":"Regional Center",
+         "icon":null,
+         "link":null,
+         "children":[ 
+            { 
+               "name":"Regional Center Dashboard",
+               "icon":null,
+               "link":"\/regional_center"
+            },
+            { 
+               "name":"Regional Center Profile",
+               "icon":null,
+               "link":"\/reg-center\/reg-center-profile"
+            },
+            { 
+               "name":"Regional Center User ",
+               "icon":null,
+               "link":"\/regional_center_user"
+            },
+            { 
+               "name":"Blank Script Collection",
+               "icon":null,
+               "link":"\/reg-center\/bs-coll-from-nu"
+            },
+            { 
+               "name":"Blank Script Distribution",
+               "icon":null,
+               "link":"\/reg-center\/bs-dist-to-cen"
+            },
+            { 
+               "name":"Answer Script Collection From Center",
+               "icon":null,
+               "link":"\/reg-center\/as-coll-from-cen"
+            },
+            { 
+               "name":"Answer Script Distribution To Examiner",
+               "icon":null,
+               "link":"\/reg-center\/as-dist-to-exam"
+            },
+            { 
+               "name":"Answer Script Collection From Examiner",
+               "icon":null,
+               "link":"\/reg-center\/as-coll-from-exam"
+            },
+            { 
+               "name":"Unused Blank Script Collection",
+               "icon":null,
+               "link":"\/reg-center\/ls-coll-from-cen"
+            },
+            { 
+               "name":"Unused Blank Script Distribution",
+               "icon":null,
+               "link":"\/reg-center\/ls-dist-to-nu"
+            }
+         ]
+      },
+      { 
+         "name":"Head Examiner\/Examiner",
+         "icon":null,
+         "link":null,
+         "children":[ 
+            { 
+               "name":"Profile",
+               "icon":null,
+               "link":"\/"
+            },
+            { 
+               "name":"Exam Marks ",
+               "icon":null,
+               "link":"\/examiner\/mark"
+            },
+            { 
+               "name":"Bills",
+               "icon":null,
+               "link":null
+            },
+            { 
+               "name":"Comments ",
+               "icon":null,
+               "link":null
+            }
+         ]
+      },
+      { 
+         "name":"Practical Viva",
+         "icon":null,
+         "link":null,
+         "children":[ 
+            { 
+               "name":"Practical\/Viva Marks ",
+               "icon":null,
+               "link":"\/practical_viva\/pv_exam_list"
+            },
+            { 
+               "name":"Reports",
+               "icon":null,
+               "link":"\/practical_viva\/pv_marks_entry"
+            }
+         ]
+      },
+      { 
+         "name":"Center",
+         "icon":null,
+         "link":null,
+         "children":[ 
+            { 
+               "name":"Center Dasboard",
+               "icon":null,
+               "link":"\/center\/center-dashboard"
+            },
+            { 
+               "name":"Exam Committee ",
+               "icon":null,
+               "link":"\/exam_committee"
+            },
+            { 
+               "name":"Center Profile",
+               "icon":null,
+               "link":"\/center\/center_profile"
+            },
+            { 
+               "name":"Invigilator",
+               "icon":null,
+               "link":"\/invigilator-list"
+            },
+            { 
+               "name":"Attendance Info",
+               "icon":null,
+               "link":"\/attendence-info"
+            },
+            { 
+               "name":"Blank Script Receive ",
+               "icon":null,
+               "link":"\/center\/bs-coll-from-reg"
+            },
+            { 
+               "name":"Loose Script Distribute",
+               "icon":null,
+               "link":"\/center\/ls-dist-to-reg"
+            }
+         ]
+      },
+      { 
+         "name":"National University",
+         "icon":null,
+         "link":null,
+         "children":[ 
+            { 
+               "name":"Center Dasboard",
+               "icon":null,
+               "link":"\/center\/center-dashboard"
+            },
+            { 
+               "name":"Center",
+               "icon":null,
+               "link":"\/center\/center-list"
+            },
+            { 
+               "name":"Attendence Generate",
+               "icon":null,
+               "link":"\/attendence"
+            }
+         ]
+      },
+      { 
+         "name":"Audit",
+         "icon":null,
+         "link":null,
+         "children":[ 
+            { 
+               "name":"Audit filter",
+               "icon":null,
+               "link":"\/log-data"
+            },
+            { 
+               "name":"Reports",
+               "icon":null,
+               "link":"\/"
+            }
+         ]
+      },
+      { 
+         "name":"Admin",
+         "icon":null,
+         "link":null,
+         "children":[ 
+            { 
+               "name":"Admin Dasboard",
+               "icon":null,
+               "link":"\/"
+            },
+            { 
+               "name":"Center ",
+               "icon":null,
+               "link":"\/center\/center-list"
+            },
+            { 
+               "name":"Regional Center ",
+               "icon":null,
+               "link":"\/regional_center"
+            },
+            { 
+               "name":"Users Section",
+               "icon":null,
+               "link":"label"
+            },
+            { 
+               "name":"Users",
+               "icon":null,
+               "link":"\/"
+            },
+            { 
+               "name":"User role",
+               "icon":null,
+               "link":"\/role"
+            },
+            { 
+               "name":"User role Configure",
+               "icon":null,
+               "link":"\/role-details"
+            },
+            { 
+               "name":"User role Assign",
+               "icon":null,
+               "link":"\/role-grant"
+            },
+            { 
+               "name":"Blank Script Distribute",
+               "icon":null,
+               "link":"\/nu\/bs-dist-to-reg"
+            },
+            { 
+               "name":"Answer Script Receive",
+               "icon":null,
+               "link":"\/nu\/as-coll-from-reg"
+            },
+            { 
+               "name":"Answer Script Distribute",
+               "icon":null,
+               "link":"\/nu\/as-dist-to-reg"
+            },
+            { 
+               "name":"Menus",
+               "icon":null,
+               "link":"\/menu-list"
+            },
+            { 
+               "name":"Submenus",
+               "icon":null,
+               "link":"\/submenu-list"
+            }
+         ]
+      },
+      { 
+         "name":"Invigilator",
+         "icon":null,
+         "link":null,
+         "children":[ 
+            { 
+               "name":"Profile",
+               "icon":null,
+               "link":"\/"
+            },
+            { 
+               "name":"Attendence Collection",
+               "icon":null,
+               "link":"\/"
+            },
+            { 
+               "name":"Reports",
+               "icon":null,
+               "link":"\/"
+            }
+         ]
+      }
+   ]
