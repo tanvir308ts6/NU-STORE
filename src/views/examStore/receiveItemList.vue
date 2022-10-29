@@ -45,7 +45,7 @@
                           v-on="on"
                           @click="getreceiveditem(props.item.item_details)"
                         >
-                          <v-icon dark>edit</v-icon>
+                          <v-icon dark>visibility</v-icon>
                         </v-btn>
                       </template>
                       <v-card>
