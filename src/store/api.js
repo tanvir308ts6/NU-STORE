@@ -1192,3 +1192,4 @@ export const examWiseDescriptiveRollSheet = `${API_END_POINT}download-exam-wise-
 
 // =================Exam Store Item/ Receive Item List/ Unit List========================
 export const ExamItemList = prefix+"store-item";
+export const ExamReceivedItemList = prefix+"store-item-receive";

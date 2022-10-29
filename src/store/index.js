@@ -314,6 +314,10 @@ import stuHelpDesk from "./module/studentPanel/help-desk";
 
 //Exam Store
 import itemList from "./module/examStor/itemList";
+import receiveItemList from "./module/examStor/receiveItemList";
+
+
+
 //Student Form Fill Up=======================student_from_fill_up_option
 import student_from_fill_up_option from "./module/probableList/student_from_fill_up_option";
 import student_form_fill_up_subject from "./module/probableList/student_form_fill_up_subject";
@@ -600,6 +604,7 @@ const store = new Vuex.Store({
 
     //Exam Store
     itemList,
+    receiveItemList,
 
     //===================== Bigm ==============================
     regCorrection,
