@@ -12,7 +12,8 @@
             <v-divider class="my-2" vertical></v-divider>
             <v-spacer />
             <v-card-actions>
-              <v-btn color="primary">Receive</v-btn>
+              <!-- <v-btn color="primary">Receive</v-btn> -->
+              <receiveForm/>
             </v-card-actions>
           </v-layout>
         </v-card>
@@ -74,7 +75,7 @@
                             >
                               <div id="RCitem">
                                 <h3>
-                                  {{index+1}}. Item Name
+                                  {{ index + 1 }}. Item Name
                                   <p>{{ rcitem.item.item_name }}</p>
                                 </h3>
                               </div>
@@ -115,12 +116,15 @@
         </v-data-table>
       </div>
     </v-container>
-    <template> </template>
   </v-container>
 </template>
 
 <script>
+import receiveForm from "./receiveForm.vue";
 export default {
+  components: {
+    receiveForm,
+  },
   data() {
     return {
       headers: [
@@ -216,7 +220,7 @@ export default {
 /* #main_contaont {
   margin: 40px;
 } */
-#rcitemList{
+#rcitemList {
   text-align: center;
 }
 #RCitem {
