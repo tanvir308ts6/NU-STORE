@@ -1,12 +1,12 @@
 <template>
-  <v-containe fluid>
-    <v-containe fluid>
+  <v-container fluid>
+    <v-container fluid>
       <div id="main_contaont">
         <v-card color="white">
           <v-layout row>
             <v-card flat>
               <v-badge left overlap>
-                <v-card-text class="title">Item List</v-card-text>
+                <v-card-text class="title">Received List</v-card-text>
               </v-badge>
             </v-card>
             <v-divider class="my-2" vertical></v-divider>
@@ -30,71 +30,80 @@
               <td>{{ props.item.received_no }}</td>
               <td>{{ props.item.received_date }}</td>
               <td>{{ props.item.remarks }}</td>
-              <td>
+              <td align="center">
                 <template>
-                  <v-row justify="center">
-                    <v-dialog v-model="dialog" persistent max-width="600px">
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                          fab
-                          class="ma-1 pa-0"
-                          small
-                          color="indigo white--text"
-                          dark
-                          v-bind="attrs"
-                          v-on="on"
-                          @click="getreceiveditem(props.item.item_details)"
-                        >
-                          <v-icon dark>visibility</v-icon>
-                        </v-btn>
-                      </template>
-                      <v-card>
-                        <v-toolbar>
-                          <v-badge left overlap>
-                            <v-card-text class="title"
-                              >Item Received</v-card-text
-                            >
-                          </v-badge>
-                          <v-spacer />
-                          <v-card-actions>
-                            <v-btn
-                              fab
-                              class="ma-1 pa-0"
-                              small
-                              color="indigo white--text"
-                              @click="dialog = false"
-                            >
-                              X
-                            </v-btn>
-                          </v-card-actions>
-                        </v-toolbar>
-                        <v-card-text>
-                          <v-row>
-                            {{ updateItemListtada}}
-                            <v-data-table
-                              :headers="headerstada"
-                              :items="updateItemListtada"
-                              :items-per-page="5"
-                              class="elevation-1"
-                            ></v-data-table>
-                            <template v-slot:items="props">
-                              <tr>
-                                <td>{{ props.index + 1 }}</td>
-                                <td>{{ props.item.item}}</td>
-                                <td></td>
-                              </tr>
-                              </template>
-                          </v-row>
-                        </v-card-text>
+                  <!-- <v-row justify="center"> -->
+                  <v-dialog v-model="dialog" persistent max-width="600px">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        class="ma-1 pa-0"
+                        color="indigo white--text"
+                        dark
+                        v-bind="attrs"
+                        v-on="on"
+                        @click="getreceiveditem(props.item.item_details)"
+                      >
+                        <v-icon dark>visibility</v-icon>
+                      </v-btn>
+                    </template>
+                    <v-card>
+                      <v-toolbar>
+                        <v-badge left overlap>
+                          <v-card-text class="title">Received Item</v-card-text>
+                        </v-badge>
+                        <v-spacer />
                         <v-card-actions>
-                          <v-spacer></v-spacer>
-                          <!-- <v-btn color="indigo white--text" text>
+                          <v-btn
+                            fab
+                            class="ma-1 pa-0"
+                            small
+                            color="indigo white--text"
+                            @click="dialog = false"
+                          >
+                            X
+                          </v-btn>
+                        </v-card-actions>
+                      </v-toolbar>
+                      <v-card-text>
+                        <!-- <v-row> -->
+                        <template>
+                          <div id="rcitemList">
+                            <div
+                              v-for="(rcitem, index) in getitemData"
+                              :key="index"
+                            >
+                              <div id="RCitem">
+                                <h3>
+                                  {{index+1}}. Item Name
+                                  <p>{{ rcitem.item.item_name }}</p>
+                                </h3>
+                              </div>
+                              <div id="RCitem">
+                                <h3>
+                                  Item Code
+                                  <p>{{ rcitem.item.item_code }}</p>
+                                </h3>
+                              </div>
+                              <div id="RCitem">
+                                <h3>
+                                  Remarks
+                                  <p>{{ rcitem.remarks }}</p>
+                                </h3>
+                              </div>
+                            </div>
+                          </div>
+                        </template>
+                        <!-- </v-row> -->
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <!-- <v-btn color="indigo white--text" text>
                             UPDATE
                           </v-btn> -->
-                        </v-card-actions>
-                      </v-card>
-                    </v-dialog>
-                  </v-row>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                  <!-- </v-row> -->
                 </template>
 
                 <!-- <v-btn fab class="ma-1 pa-0" small color="red white--text">
@@ -105,9 +114,9 @@
           </template>
         </v-data-table>
       </div>
-    </v-containe>
+    </v-container>
     <template> </template>
-  </v-containe>
+  </v-container>
 </template>
 
 <script>
@@ -145,24 +154,24 @@ export default {
         },
       ],
 
-      headerstada: [
-        {
-          text: "SL",
-          value: "",
-        },
-        {
-          text: "Item Name",
-          value: "received_by",
-        },
-        {
-          text: "Received Quantity",
-          value: "received_quantity",
-        },
-        {
-          text: "Remarks",
-          value: "remarks",
-        },
-      ],
+      // headerstada: [
+      //   {
+      //     text: "SL",
+      //     value: "",
+      //   },
+      //   {
+      //     text: "Item Name",
+      //     value: "id",
+      //   },
+      //   {
+      //     text: "Received Quantity",
+      //     value: "",
+      //   },
+      //   {
+      //     text: "Remarks",
+      //     value: "",
+      //   },
+      // ],
       dialog: false,
       updateItemListtada: [],
     };
@@ -178,6 +187,10 @@ export default {
         ? this.$store.getters.getExaMRexeivedItemsList
         : [];
     },
+
+    getitemData() {
+      return this.updateItemListtada;
+    },
   },
 
   watch: {
@@ -191,8 +204,8 @@ export default {
       this.$store.dispatch("fetchExamStoreReceivedItemList");
     },
 
-    getreceiveditem(tada) {
-      this.updateItemListtada = tada;
+    async getreceiveditem(tada) {
+      this.updateItemListtada = await tada;
       console.log(tada);
     },
   },
@@ -200,7 +213,15 @@ export default {
 </script>
 
 <style>
-#main_contaont {
+/* #main_contaont {
   margin: 40px;
+} */
+#rcitemList{
+  text-align: center;
+}
+#RCitem {
+  display: inline-block;
+  position: relative;
+  margin: 5px;
 }
 </style>
