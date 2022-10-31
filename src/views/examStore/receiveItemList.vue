@@ -13,7 +13,7 @@
             <v-spacer />
             <v-card-actions>
               <!-- <v-btn color="primary">Receive</v-btn> -->
-              <receiveForm/>
+              <receiveForm />
             </v-card-actions>
           </v-layout>
         </v-card>
@@ -195,6 +195,8 @@ export default {
     getitemData() {
       return this.updateItemListtada;
     },
+
+    
   },
 
   watch: {
