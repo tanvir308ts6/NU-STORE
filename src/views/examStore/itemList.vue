@@ -170,6 +170,7 @@
         </v-layout>
       </v-card>
       <v-data-table
+        :loading="loading"
         :headers="headers"
         :items="getExamStoreItemListData"
         :items-per-page="5"
@@ -312,6 +313,7 @@
 export default {
   data() {
     return {
+      loading:false,
       headers: [
         {
           text: "SL",
@@ -390,7 +392,11 @@ export default {
   methods: {
     //get Exam Store Item List
     fatchExamStoreItemList() {
-      this.$store.dispatch("fetchExamStoreItemList");
+      this.loading = true;
+      this.$store.dispatch("fetchExamStoreItemList")
+      .then(()=>{
+         this.loading = false;
+      })
     },
     //get Exam Store Item List by ID
     updateItem(item) {

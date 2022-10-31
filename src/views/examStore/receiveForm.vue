@@ -95,7 +95,6 @@
             </v-flex>
           </v-layout>
         </v-container>
-
         <!-- Item Receive from -->
         <div id="input_area">
           <v-layout row wrap>

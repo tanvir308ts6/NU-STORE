@@ -18,6 +18,7 @@
           </v-layout>
         </v-card>
         <v-data-table
+          :loading="loading"
           :headers="headers"
           :items="getExaMRexeivedItemsList"
           :items-per-page="5"
@@ -157,7 +158,8 @@ export default {
           value: "",
         },
       ],
-
+      searchPeram:{},
+      loading:false,
       // headerstada: [
       //   {
       //     text: "SL",
@@ -207,7 +209,11 @@ export default {
 
   methods: {
     getExamStoreReceivedItemList() {
-      this.$store.dispatch("fetchExamStoreReceivedItemList");
+      this.loading = true;
+      this.$store.dispatch("fetchExamStoreReceivedItemList")
+      .then(()=>{
+         this.loading = false;
+      }) 
     },
 
     async getreceiveditem(tada) {
