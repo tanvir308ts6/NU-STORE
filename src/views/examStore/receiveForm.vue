@@ -7,7 +7,7 @@
       transition="dialog-bottom-transition"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on">
+        <v-btn color="primary" dark v-bind="attrs" v-on="on" @click="validet()">
           Receive Items
         </v-btn>
       </template>
@@ -51,6 +51,7 @@
                             v-model="itemListObject.mrr_no"
                             :rules="MrrRules"
                             label="MRR No"
+                            type="number"
                             required
                           ></v-text-field>
                         </v-flex>
@@ -147,6 +148,7 @@
                             v-model="items.received_quantity"
                             :rules="quantityRules"
                             label="Quantity"
+                            type="number"
                             required
                           ></v-text-field>
                         </v-flex>
@@ -265,9 +267,26 @@ export default {
         this.itemListObject.splice(index, 1);
       }
     },
-
+    validet(){
+      this.RcRules= [(v) => !!v || "Receive No is is required"];
+      this.MrrRules= [(v) => !!v || "MRR no is required"];
+      this.DateRules= [(v) => !!v || "Receive Date no is required"];
+      this.RcByRules= [(v) => !!v || "Receive person name is required"];
+      this.RemarkRules= [(v) => !!v || "Remarks is required"];
+      this.itemRules= [(v) => !!v || "Select a item is required"];
+      this.unitRules= [(v) => !!v || "Select unit is required"];
+      this.quantityRules= [(v) => !!v || "Item Quantity is required"];
+    },
     clearobj() {
       this.itemListObject = [{}];
+      this.RcRules= [];
+      this.MrrRules= [];
+      this.DateRules= [];
+      this.RcByRules= [];
+      this.RemarkRules= [];
+      this.itemRules= [];
+      this.unitRules= [];
+      this.quantityRules= [];
     },
 
     //get Exam Store Item List
