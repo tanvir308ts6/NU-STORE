@@ -64,7 +64,17 @@
       <v-card color="white">
         <v-layout row>
           <v-card flat>
-            <v-badge left overlap>
+            <v-badge left overlap color="transparent">
+              <template v-slot:badge>
+                <v-btn
+                  fab
+                  color="primary"
+                  small
+                  style="margin-top: -0.8em"
+                  class="elevation-0"
+                  >{{ lengthAlu }}</v-btn
+                >
+              </template>
               <v-card-text class="title">Item List</v-card-text>
             </v-badge>
           </v-card>
@@ -127,7 +137,7 @@
                             label="Unit In*"
                             item-text="unit_name"
                             item-value="id"
-                            v-model="unit_id"
+                            v-model="id"
                             required
                           ></v-select>
                         </v-col>
@@ -137,7 +147,7 @@
                             label="Status*"
                             item-text="value"
                             item-value="id"
-                            v-model="item_status"
+                            v-model="value"
                             required
                           ></v-select>
                         </v-col>
@@ -151,12 +161,7 @@
                         text
                         @click="
                           (dialog = true),
-                            additemlist(
-                              item_name,
-                              item_code,
-                              updateItemList.unit_id,
-                              updateItemList.item_status
-                            )
+                            additemlist(item_name, item_code, id, value)
                         "
                       >
                         Save
@@ -169,6 +174,7 @@
           </v-card-actions>
         </v-layout>
       </v-card>
+
       <v-data-table
         :loading="loading"
         :headers="headers"
@@ -187,117 +193,15 @@
             <td v-if="props.item.item_status == 0">Inactive</td>
             <td align="center" justify="space-around">
               <!-- ....................................................................................... -->
-              <template>
-                <v-row justify="center">
-                  <v-badge left overlap>
-                    <v-dialog
-                      v-model="dialogUlzangh"
-                      persistent
-                      max-width="600px"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                          fab
-                          class="ma-1 pa-0"
-                          small
-                          color="indigo white--text"
-                          dark
-                          v-bind="attrs"
-                          v-on="on"
-                          @click="
-                            updateItem(props.item);
-                            dialogUlzangh = true;
-                          "
-                        >
-                          <v-icon dark>edit</v-icon>
-                        </v-btn>
-                      </template>
-                      <v-card>
-                        <v-toolbar>
-                          <v-badge left overlap>
-                            <v-card-text class="title">Edit Item</v-card-text>
-                          </v-badge>
-                          <v-spacer />
-                          <v-card-actions>
-                            <v-btn
-                              fab
-                              class="ma-1 pa-0"
-                              small
-                              color="indigo white--text"
-                              @click="dialogUlzangh = false"
-                            >
-                              X
-                            </v-btn>
-                          </v-card-actions>
-                        </v-toolbar>
-                        <v-card-text>
-                          <v-row>
-                            <v-col cols="12" sm="6" md="4">
-                              <v-text-field
-                                label="Item Name*"
-                                value="item_name"
-                                required
-                                v-model="updateItemList.item_name"
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" sm="6" md="4">
-                              <v-text-field
-                                label="Item Code*"
-                                value="item_code"
-                                type="number"
-                                v-model="updateItemList.item_code"
-                                required
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" sm="6">
-                              <v-select
-                                :items="getExamStoreUnitList"
-                                label="Unit In*"
-                                item-text="unit_name"
-                                item-value="id"
-                                v-model="updateItemList.unit_id"
-                                required
-                              ></v-select>
-                            </v-col>
-                            <v-col cols="12" sm="6">
-                              <v-select
-                                :items="itemStatusList"
-                                label="Status*"
-                                item-text="value"
-                                item-value="id"
-                                v-model="updateItemList.item_status"
-                                required
-                              ></v-select>
-                            </v-col>
-                          </v-row>
-
-                          <small>*indicates required field</small>
-                        </v-card-text>
-                        <v-card-actions>
-                          <v-spacer></v-spacer>
-                          <v-btn
-                            color="indigo white--text"
-                            text
-                            @click="
-                              (dialog = true),
-                                additemlist(
-                                  updateItemList.item_name,
-                                  updateItemList.item_code,
-                                  updateItemList.unit_id,
-                                  updateItemList.item_status
-                                )
-                            "
-                          >
-                            UPDATE
-                          </v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </v-dialog>
-                  </v-badge>
-                </v-row>
-              </template>
-
-              <v-btn fab class="ma-1 pa-0" small color="red white--text">
+              <storeItemEditForm v-bind:itemid="props.item" />
+              <!-- ....................................................................................... -->
+              <v-btn
+                fab
+                class="ma-1 pa-0"
+                small
+                color="red white--text"
+                @click="deleteExamStoteItem(props.item.id)"
+              >
                 <v-icon dark>delete</v-icon>
               </v-btn>
             </td>
@@ -310,10 +214,14 @@
 </template>
 
 <script>
+import storeItemEditForm from "./storeItemEditForm.vue";
 export default {
+  components: {
+    storeItemEditForm,
+  },
   data() {
     return {
-      loading:false,
+      loading: false,
       headers: [
         {
           text: "SL",
@@ -352,12 +260,6 @@ export default {
       ],
       dialogDibba: false,
       dialogUlzangh: false,
-      updateItemList: {
-        item_name: "",
-        item_code: "",
-        item_status: "",
-        unit_id: "",
-      },
     };
   },
   created() {
@@ -370,17 +272,18 @@ export default {
         ? this.$store.getters.getExamStoreItemListData
         : [];
     },
-
     getEditExamItemList() {
       return this.$store.getters.getEditExamStoreItemListData
         ? this.$store.getters.getEditExamStoreItemListData
         : [];
     },
-
     getExamStoreUnitList() {
       return this.$store.getters.getExamStoreItemUnitList
         ? this.$store.getters.getExamStoreItemUnitList
         : [];
+    },
+    lengthAlu() {
+      return this.$store.getters.lengthAlu ? this.$store.getters.lengthAlu : [];
     },
   },
   watch: {
@@ -393,28 +296,40 @@ export default {
     //get Exam Store Item List
     fatchExamStoreItemList() {
       this.loading = true;
-      this.$store.dispatch("fetchExamStoreItemList")
-      .then(()=>{
-         this.loading = false;
-      })
+      this.$store.dispatch("fetchExamStoreItemList").then(() => {
+        this.loading = false;
+      });
     },
-    //get Exam Store Item List by ID
-    updateItem(item) {
-      this.updateItemList = {
-        ...item,
-        unit_id: Number(item.unit_id),
-        item_status: Number(item.item_status),
-      };
-      console.log("tobola", item);
-      this.$store.dispatch("fetchEditExamStoreItem", item.id);
-    },
-    //get Exam Store Item unit list
-    fetchExamStoreUnitList() {
-      this.$store.dispatch("fetchEditExamStoreItemsUnit");
+    //Post Exam Store Item Data
+    additemlist(item_name, item_code, unit_id, item_status) {
+      console.log(item_name, item_code, unit_id, item_status);
+      this.$store
+        .dispatch("postExamStoreItem", {
+          item_name: item_name,
+          item_code: item_code,
+          unit_id: unit_id,
+          item_status: item_status,
+        })
+        .then(() => {
+          this.$store.dispatch("fetchExamStoreItemList");
+        });
+      console.log("bhsdcbsjdhbc");
     },
 
-    additemlist(item_name, item_code, unit_id, id) {
-      console.log(item_name, item_code, unit_id, id);
+    //Delete  Exam Store Item
+    deleteExamStoteItem(id) {
+      console.log("Jhunjhuni", id);
+      this.$store
+        .dispatch("fetchDeleteExamStoreItem", id)
+        // .then(this.fatchExamStoreItemList());
+        .then(() => {
+          this.$store.dispatch("fetchExamStoreItemList");
+        });
+      console.log("Jhunjhuni Deleted");
+    },
+    //get Exam Store Item's unit list
+    fetchExamStoreUnitList() {
+      this.$store.dispatch("fetchEditExamStoreItemsUnit");
     },
   },
 };
